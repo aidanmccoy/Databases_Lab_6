@@ -1,0 +1,28 @@
+M3
+  select firstname, lastname, place, (Select count(*) from marathon i where i.place < o.place and i.Sex = 'F') from marathon o where Sex = 'F' limit 10
+  -- First 10 femaales
+ select firstname, lastname, place, (Select count(*) 
+  from marathon i 
+    where i.place < o.place and i.Sex = 'F') 
+    from marathon o where Sex = 'F' and 29 = 
+    (select (count(*) from marathon i where i.place < o.place and i.Sex = 'f');
+    
+    --Results in 30th female
+ select m1.firstname, m1.lastname from marathon m1
+   inner join marathon m2 on m1.place > m2.place
+   where m1.Sex = 'F' and m2.Sex = 'F'
+   group by m1.firstname, m1.lastname
+   having count(*) = 29;
+-------------------------------------------------   
+M2
+  select state, Sex, AgeGroup, count(*) as runnercount
+  From marathon o
+  Group by State, Sex, AgeGroup
+  HAVING Count(*) = 
+  (Select max(runnercount as max_count from (
+    Select state, Sex, AgeGroup, count(*) as runnercount
+    FROM marathon
+    GROUP BY state, Sex, AgeGroup
+    )
+    Group by state
+  );
